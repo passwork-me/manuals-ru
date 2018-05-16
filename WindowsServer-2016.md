@@ -1,20 +1,20 @@
-# How to install password manager on Windows Server 2016
+# Установка менеджера паролей в Windows Server 2016
 
-**1. Set hostname, install IIS 10, open 5353 port.**
+**1. Изменение имени сервера, установка IIS 10, открытие порта 5353.**
 
-Press “Win+X”, then “Y” and change default hostname. 
-Change server hostname to “passwork” to enable “passwork.local” domain in your private network.
+Нажмите “Win+X”, затем “Y” и измените стандартное имя сервера. 
+Измение имя на “passwork” для того, чтобы задействовать локальный домен “passwork.local” в частной сети.
 
 ![alt text](./images/WS2016_01.png)
 
-To complete changes reboot the server.
+Для того, чтобы внесенные изменения вступили в силу необходимо перезагрузить систему.
 
 
-Open “Server Manager” and add “Web Server (IIS)” role.
+Откройте “Server Manager” и добавьте роль “Web Server (IIS)”.
 
 ![alt text](./images/WS2016_02.png)
 
-Allow inbound UDP connection for private networks on 5353 port in firewall settings.
+В настройках файервола разрешите входящее соединение по протоколу UDP на порт 5353.
 
 ![alt text](./images/WS2016_03.png)
 
@@ -23,61 +23,61 @@ Allow inbound UDP connection for private networks on 5353 port in firewall setti
 ![alt text](./images/WS2016_05.png)
 
 
-**2. Install MongoDB database.**
+**2. Установка MongoDB.**
 
-Open link [https://www.mongodb.com/download-center](https://www.mongodb.com/download-center) choose “Community Server”, “Windows”, click on “Download”. Then click “Save”. MongoDB installation package will be downloaded. Click “Run” to start installation process.
+Откройте ссылку [https://www.mongodb.com/download-center](https://www.mongodb.com/download-center) выберите “Community Server”, “Windows”, нажмите “Download”. Затем “Save”. Начнется процесс скачивания пакета MongoDB для установки. Нажмите “Run” чтобы начать процесс установки.
 
-Notice: Reduce the security level of IE before downloading. Enable "Active Scripting" and "Download" options.
+Примечание: измените параметры безопасности IE перед загрузкой. Разрешите "Active Scripting" и "Download" функции в настройках браузера.
 
 ![alt text](./images/WS2016_06.png)
 
-Click “Next”, then accept terms, again click “Next”. Select “Complete” installation.
+Нажмите “Next”, согласитесь с условиями использования, опять нажмите “Next”. Выберите опцию “Complete”.
 
 ![alt text](./images/WS2016_07.png)
 
-Tick off “Install MongoDB Compass”. Click “Next” then “Install” to start installation process.
+Отмените установку “Install MongoDB Compass”. Нажмите “Next”, затем “Install” для начала процесса установки.
 
 ![alt text](./images/WS2016_08.png)
 
-Click “Finish” after installation ends.
+Нажмите “Finish” после завершения процесса установки.
 
 
-**Fix the Windows firewall.**
+**Настройка файервола Windows.**
 
-Go to your “Control Panel” and then click on “System and Security”. Once there, click on “Windows Firewall”.
+Откройте “Control Panel” и выберите раздел “System and Security”. Затем нажмите на “Windows Firewall”.
 
-You should now see your Windows firewall like this:
+Вы должны увидеть окно управления файерволом Windows:
 
 ![alt text](./images/WS2016_09.png)
 
-Click on “Allow an app or feature trough Windows Firewall”, your window will change. Click on “Allow another app.” -> click “Browse” and add MongoDB Database Server application "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe", then click "Add" and "Ok".
+Нажмите на “Allow an app or feature trough Windows Firewall”, появится новое окно. Нажмите “Allow another app.” -> нажмите “Browse” и найдите приложение MongoDB Database Server "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe", затем нажмите "Add" и "Ok".
 
 ![alt text](./images/WS2016_10.png)
 
 
-**Configure a Windows Service for MongoDB Community Edition.**
+**Настройка службы Windows для MongoDB Community Edition.**
 
-Create directories for your database and log files:
-Open Command Prompt. Press “Win+X”, then press “a” key. Run:
+Создайте директорию для базы данных и лог файлов:
+Откройте коммандную строку. Нажмите “Win+X”, затем “a”. Выполните:
 
 ```
 md \data\db
 ```
 
 
-and 
+и
 
 ```
 md \data\log
 ```
 
 
-commands.
+команды.
 
 
-**Create a configuration file.**
+**Создание файла конфигурации.**
 
-Create a file “C:\Program Files\MongoDB\Server\3.6\mongod.cfg” that specifies both systemLog.path and storage.dbPath:
+Создайте файл “C:\Program Files\MongoDB\Server\3.6\mongod.cfg” в котором описаны переменные systemLog.path и storage.dbPath:
 
 ```
 systemLog:
@@ -88,18 +88,18 @@ storage:
 ```
 
 
-**Install the MongoDB service.**
+**Установка службы MongoDB.**
 
-Run all of the following commands in Command Prompt with “Administrative Privileges” (open command prompt. Press “Win+X”, then press “a” key).
+Выполните все команды ниже из командной строки с привилегиями администратора (откройте командную строку. Нажмите “Win+X”, затем “a”).
 
-Run:
+Выполните:
 
 ```
 "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe" --config "C:\Program Files\MongoDB\Server\3.6\mongod.cfg" --install
 ```
 
 
-**Start the MongoDB service.**
+**Запуск службы MongoDB.**
 
 ```
 net start MongoDB
@@ -109,46 +109,46 @@ net start MongoDB
 ![alt text](./images/WS2016_11.png)
 
 
-**Verify that MongoDB has started successfully**
+**Убедитесь в том, что служба MongoDB была успешно запущена.**
 
-Verify that MongoDB has started successfully by checking the log file at c:\data\log\mongod.log for the following line: [initandlisten] waiting for connections on port 27017
+Проверьте лог файл c:\data\log\mongod.log и обратите внимание на строку: [initandlisten] waiting for connections on port 27017
 
 
-**3. PHP installation.**
+**3. Установка PHP.**
 
-We will use Web Platform Installer for PHP installation, so open IE and go to [https://www.microsoft.com/web/downloads/platform.aspx](https://www.microsoft.com/web/downloads/platform.aspx) URL to install the extension.
+Мы будем использовать Web Platform Installer для установки PHP, поэтому откройте ссылку [https://www.microsoft.com/web/downloads/platform.aspx](https://www.microsoft.com/web/downloads/platform.aspx) для его установки.
 
 ![alt text](./images/WS2016_12.png)
 
-Then click “Run”.
+Нажмите “Run”.
 
 ![alt text](./images/WS2016_13.png)
 
-Accept terms and press “Install”. Press “Finish” after installation ends.
+Согласитесь с условиями и нажмите “Install”. После завершения установки нажмите “Finish”.
 
 
-Open “Server Manager”, go to “Tools” and click on “Internet Information Services (IIS) Manager”, select server and double click on “Web Platform Installer”.
+Откройте “Server Manager”, перейдите в “Tools” и кдикните на “Internet Information Services (IIS) Manager”, выберите сервер и дважды кликните на иконке “Web Platform Installer”.
 
 ![alt text](./images/WS2016_14.png)
 
-Go to “Products” tab and search for PHP. Select PHP 5.6.31 from the list and press “Add”. Then press “Install” and accept third party license terms.
+Перейдите на вкладку “Products” и используя поиск найдите доступные версии PHP. Выберите PHP 5.6.31 из списка и нажмите “Add”. Затем выберите “Install” и согласитесь с условиями использования.
 
 ![alt text](./images/WS2016_15.png)
 
-You will see PHP Manager for IIS failed to install, this notice can be ignored. Click “Finish”. Click “Finish”.
+Если вы увидите сообщение "PHP Manager for IIS failed to install", то просто проигнорируйте его. Нажмите “Finish”.
 
 
-**4. Installing the Legacy MongoDB PHP Driver, Phalcon Framework and enabling additional extensions and options.**
+**4. Установка Legacy MongoDB PHP драйвера, Phalcon PHP фреймворка, а также дополнительных расширений и опций.**
 
-Go to [https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip](https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip) to download Legacy MongoDB PHP Driver.
+Перейдите по ссылке [https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip](https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip) для скачивания Legacy MongoDB PHP драйвера.
 
-Go to [https://github.com/phalcon/cphalcon/releases/download/v3.3.2/phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip](https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip) to download Phalcon Framework.
+Перейдите по ссылке [https://github.com/phalcon/cphalcon/releases/download/v3.3.2/phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip](https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip) для скачивания Phalcon PHP фреймворка.
 
-Extract the “php_mongo-1.5.1-5.6-nts-vc11-x86.zip” archive and copy “php_mongo.dll” to “C:\Program Files (x86)\PHP\v5.6\ext”.
+Распакуйте the “php_mongo-1.5.1-5.6-nts-vc11-x86.zip” архив и скопируйте “php_mongo.dll” в “C:\Program Files (x86)\PHP\v5.6\ext”.
 
-Extract the “phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip” archive and copy “php_phalcon.dll” to “C:\Program Files (x86)\PHP\v5.6\ext”.
+Распакуйте the “phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip” архив и скопируйте “php_phalcon.dll” в “C:\Program Files (x86)\PHP\v5.6\ext”.
 
-Open “C:\Program Files (x86)\PHP\v5.6\php.ini” in Notepad and add to the [Extension List] section the following lines:
+Откройте “C:\Program Files (x86)\PHP\v5.6\php.ini” при помощи блокнота и добавьте в раздел [Extension List] следующие строки:
 
 ```
 extension=php_mongo.dll
@@ -157,56 +157,56 @@ extension=php_ldap.dll
 ```
 
 
-Save modifications and close the Notepad.
+Сохраните изменения и закройте блокнот.
 
 
-**5. Download and install Passwork.**
+**5. Загрузка и установка Passwork.**
 
-Open repository URL in IE browser [http://get.passwork.pro:81/](http://get.passwork.pro:81/) Sign in using provided Login and Password.
+Откройте URL репозитория в браузере [http://get.passwork.pro:81/](http://get.passwork.pro:81/) Войдите в систему используя предоставленный логин и пароль.
 
 ![alt text](./images/WS2016_16.png)
 
-Choose “passwork” repository.
+Выберите репозиторий “passwork”.
 
 ![alt text](./images/WS2016_17.png)
 
-Then click on download icon and select ZIP option.
+Нажмите на иконку загрузки и выберите ZIP опцию.
 
 ![alt text](./images/WS2016_18.png)
 
-Extract archive and copy content of passwork folder to “C:\inetpub\wwwroot\” directory.
+Извлеките архив и скопируйте содержимое папки "paswork" в директорию “C:\inetpub\wwwroot\”.
 
 ![alt text](./images/WS2016_19.png)
 
 
-**Create config file.**
+**Создание файла конфигурации.**
 
-Create a copy of the “C:\inetpub\wwwroot\app\config\config.example.ini” in “C:\inetpub\wwwroot\app\config\” and rename it to “config.ini”.
+Создайте копию файла “C:\inetpub\wwwroot\app\config\config.example.ini” в директории “C:\inetpub\wwwroot\app\config\” и измените его имя на “config.ini”.
 
 
-**Set correct permissions.**
+**Установка прав доступа.**
 
-Open IIS Manager, then right click on website and click “Edit permissions”.
+Откройте IIS Manager, нажмите правой кнопкой на вебсайт и выберите “Edit permissions”.
 
 ![alt text](./images/WS2016_20.png)
 
-Press “Edit”, then “Add” and search for “IUSR” object. Select “IUSR” and grant “Write” permissions then click “Ok” twice.
+Нажмите “Edit”, затем “Add” найдите “IUSR” аккаунт. Выберите в списке “IUSR” и разрешите “Write” опцию, затем нажмите “Ok” два раза.
 
 ![alt text](./images/WS2016_21.png)
 
 
-**Change website physical path.**
+**Изменение физического пути веб-сайта.**
 
-Right click on “Default Web Site” > “Manage Website” > “Advanced Settings”. Change website physical path to “C:\inetpub\wwwroot\public\”, then click “Ok”.
+Нажмите правой кнопкой мыши на “Default Web Site” > “Manage Website” > “Advanced Settings”. Измените физическое расположение сайта на “C:\inetpub\wwwroot\public\”, затем нажмите “Ok”.
 
 ![alt text](./images/WS2016_22.png)
 
 
-**Restore MongoDB database.**
+**Восстановление базы данных MongoDB.**
 
-Open Command Prompt. Press “Win+X”, then press “a” key.
+Откройте командную строку. Нажмите “Win+X”, затем “a”.
 
-Run the following commands:
+Выполните следующие команды:
 
 ```
 cd C:\Program Files\MongoDB\Server\3.6\bin
@@ -216,88 +216,88 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 ```
 
 
-The passwork database will be created.
+После выполнения команд будет создана база данных passwork.
 
 
 **Rewrite rules**
 
-Using “Web Platform Installer” install “URL Rewrite” module.
+Используя “Web Platform Installer” установите “URL Rewrite” модуль.
 
 ![alt text](./images/WS2016_23.png)
 
-Close IIS Manager and open it again, select website. Double click on “URL Rewrite” icon. Click “Import rules” and select .htaccess file from website root directory, then click “Open” and “Import” buttons.
+Закройте IIS Manager и снова откройте его, выберите вебсайт. Кликните два раза на иконку “URL Rewrite”. Нажимите “Import rules” и выберите .htaccess файл из корневой директории сайта, нажмите “Open” затем “Import”.
 
 ![alt text](./images/WS2016_24.png)
 
-Click “Apply” button once imported.
+Нажмите “Apply” после успешного импорта.
 
 
-**License installation.**
+**Установка лицензии.**
 
-Extract archive with registration keys and move "demo.openssl.lic" and "reginfo.php" to "C:\inetpub\wwwroot\app\keys\" directory.
-
-
-Open [http://passwork.local](http://passwork.local) to access website.
-
-![alt text](./images/WS2016_25.png)
+Распакуйте архив с ключами для регистрации и переместите файлы "demo.openssl.lic" и "reginfo.php" в директорию "/var/www/app/keys/".
 
 
-**Use default account to sign in:**
+**Установка завершена.**
 
-login: `admin@passwork.me`
+Откройте [http://passwork.local](http://passwork.local) для доступа к вебсайту.
 
-pass: `DemoDemo`
+
+**Используйте учетную запись по умолчанию для входа в систему:**
+
+логин: `admin@passwork.me`
+
+пароль: `DemoDemo`
 
 
 **6. Configure SSL certificate on IIS 10.**
 
-Open “Server Manager”, go to “Tools” and click on “Internet Information Services (IIS) Manager”, select server and double click on “Server Certificates”, then import certificate.
+Откройте “Server Manager”, выберите “Tools” затем “Internet Information Services (IIS) Manager”, выберите сервер и два раза кликните на “Server Certificates”, импортируйте сертификат.
 
 ![alt text](./images/WS2016_26.png)
 
-Go to sites, select your site and click “Bindings”. Select “https” protocol from drop-down list. Enter hostname “passwork.local”. Select SSL certificate from the list (in our case cert name is “https”).
+Перейдите к сайтам, выберите сайт и нажмите “Bindings”. Выберите “https” протокол из выпадающего списка. Введите полное доменное имя “passwork.local”. Выберите SSL сертификат из списка (в инструкции имя сертификата “https”).
 
 ![alt text](./images/WS2016_27.png)
 
-Then click “Close”.
+Затем нажмите “Close”.
 
-Check SSL connection by going to [https://passwork.local](https://passwork.local).
+Проверьте SSL-соединение, откройте ссылку [https://passwork.local](https://passwork.local).
 
 
-**7. SMTP server install.**
+**7. Установка SMTP сервера.**
 
-Open “Server Manager” and add “SMTP Server” role.
+Откройте “Server Manager” и добавьте роль “SMTP Server”.
 
 ![alt text](./images/WS2016_28.png)
 
-Open IIS 6.0 Manager and configure SMTP server.
+Откройте "IIS 6.0 Manager" и настройте SMTP server.
 
 ![alt text](./images/WS2016_29.png)
 
-Open “Delivery” tab click on “Advanced” button and set “Smart host”. For Gmail it is “smtp.gmail.com”.
+Откройте вкладку “Delivery”, нажмите на “Advanced” и заполните поле “Smart host”. Для Gmail в этом поле должен быть адрес “smtp.gmail.com”.
 
 ![alt text](./images/WS2016_30.png)
 
-Click on “Outbound connections” and set outbound TCP port to “587”.
+Нажмите на “Outbound connections” и задайте исходящий TCP порт - “587”.
 
 ![alt text](./images/WS2016_31.png)
 
-Click on “Outbound Security” button, select “Basic Authentication” and fill in user name and password fields. Tick on “TLS Encryption”.
+Нажмите на “Outbound Security” кнопку, выберите “Basic Authentication” и заполните "user name" и "password" поля. Включите опцию “TLS Encryption”.
 
 ![alt text](./images/WS2016_32.png)
 
-Click on “Access” tab > “Connection” and add 127.0.0.1 ip to granted computers list.
+Нажмите на “Access” tab > “Connection” и добавьте ip адрес 127.0.0.1 в список разрешенных.
 
 ![alt text](./images/WS2016_33.png)
 
-Click on “Access” tab > “Relay” and add 127.0.0.1 ip to granted computers list.
+Нажмите на “Access” tab > “Relay” и добавьте ip адрес 127.0.0.1 в список разрешенных.
 
 ![alt text](./images/WS2016_34.png)
 
 
-**Enable SMTP Server start on boot.**
+**Запуск SMTP-сервера при загрузке системы.**
 
-Open Command Prompt - Press “Win+X”, then press “a” key. Run following commands:
+Откройте командную строку - Нажмите “Win+X”, затем “a”. Выполните следующие команды:
 
 ```
 powershell
@@ -307,4 +307,4 @@ set-service smtpsvc -StartupType Automatic
 ```
 
 
-SMTP configuration completed.
+Настройка SMTP-сервера завершена.

@@ -31,7 +31,7 @@
 
 ![alt text](./images/WS2012R2_06.png)
 
-Нажмите “Next”, примите условия, опять нажмите “Next”. Выберите опцию “Complete”.
+Нажмите “Next”, согласитесь с условиями использования, опять нажмите “Next”. Выберите опцию “Complete”.
 
 ![alt text](./images/WS2012R2_07.png)
 
@@ -232,7 +232,7 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 
 ![alt text](./images/WS2012R2_24.png)
 
-Нажмите “Apply” кнопку после успешного импорта.
+Нажмите “Apply” после успешного импорта.
 
 
 **Установка лицензии.**
@@ -285,7 +285,7 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 
 ![alt text](./images/WS2012R2_31.png)
 
-Нажмите на “Outbound Security” кнопку, выберите “Basic Authentication” и заполните user name и password поля. Включите опцию “TLS Encryption”.
+Нажмите на “Outbound Security” кнопку, выберите “Basic Authentication” и заполните "user name" и "password" поля. Включите опцию “TLS Encryption”.
 
 ![alt text](./images/WS2012R2_32.png)
 
