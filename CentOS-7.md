@@ -392,7 +392,7 @@ systemctl enable postfix
 ```
 
 
-Откройте файл конфигурации /etc/postfix/main.cf.
+Откройте файл конфигурации /etc/postfix/main.cf
 
 ```
 nano /etc/postfix/main.cf
@@ -418,7 +418,7 @@ smtp_sasl_tls_security_options = noanonymous
 
 **Конфигурация SASL аутентификации.**
 
-Для аутентификации необходимо добавить учетные данные Gmail. Создайте файл /etc/postfix/sasl_passwd file.
+Для аутентификации необходимо добавить учетные данные Gmail. Создайте файл /etc/postfix/sasl_passwd file
 
 ``` 
 nano /etc/postfix/sasl_passwd

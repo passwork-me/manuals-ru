@@ -25,7 +25,7 @@
 
 **2. Установка MongoDB.**
 
-Откройте ссылку [https://www.mongodb.com/download-center](https://www.mongodb.com/download-center) выберите “Community Server”, “Windows”, нажмите “Download”. Затем “Save”. Начнется процесс скачивания пакета MongoDB для установки. Нажмите “Run” чтобы начать процесс установки.
+Откройте ссылку [https://www.mongodb.com/download-center](https://www.mongodb.com/download-center) выберите “Community Server”, “Windows”, нажмите “Download”, затем “Save”. Начнется процесс скачивания пакета MongoDB. Нажмите “Run” чтобы начать процесс установки.
 
 Примечание: измените параметры безопасности IE перед загрузкой. Разрешите "Active Scripting" и "Download" функции в настройках браузера.
 
