@@ -234,7 +234,7 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 
 **Установка лицензии.**
 
-Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.php` в директорию `C:\inetpub\wwwroot\app\config\`.
+Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.php` в директорию `C:\inetpub\wwwroot\app\config\keys\`.
 
 
 **Установка завершена.**
