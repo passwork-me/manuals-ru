@@ -162,7 +162,7 @@ extension=php_ldap.dll
 
 **5. Загрузка и установка Passwork.**
 
-Откройте URL репозитория в браузере [http://get.passwork.pro:81/](http://get.passwork.pro:81/) Войдите в систему используя предоставленный логин и пароль.
+Откройте URL репозитория в браузере [https://passwork.download/](https://passwork.download/) Войдите в систему используя предоставленный логин и пароль.
 
 ![alt text](./images/WS2016_16.png)
 
