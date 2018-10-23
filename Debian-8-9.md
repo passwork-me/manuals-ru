@@ -158,7 +158,7 @@ service apache2 restart
 ```
 cd /var/www
 git init
-git remote add origin https://passwork.download/passwork/passwork.git
+git remote add origin http://passwork.download/passwork/passwork.git
 git pull origin master
 ```
 
