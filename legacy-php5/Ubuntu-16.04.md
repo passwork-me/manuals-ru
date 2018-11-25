@@ -93,12 +93,11 @@ systemctl enable mongod.service
 ```
 
 
-**4. Установка PHP 7.**
+**4. Установка PHP5.6.**
 
 **Добавление PPA репозитория.**
 
 ```
-apt-get install python-software-properties
 add-apt-repository ppa:ondrej/php
 ```
 
@@ -107,7 +106,7 @@ add-apt-repository ppa:ondrej/php
 
 ```
 apt-get update
-apt-get install -y php7.0 php7.0-json php7.0-mcrypt php7.0-dev php7.0-ldap php7.0-xml php7.0-bcmath php7.0-mbstring
+apt-get install -y php5.6 php5.6-json php5.6-mcrypt php5.6-dev php5.6-ldap php5.6-xml php5.6-bcmath php5.6-mbstring
 ```
 
 
@@ -115,9 +114,14 @@ apt-get install -y php7.0 php7.0-json php7.0-mcrypt php7.0-dev php7.0-ldap php7.
 
 ```
 apt-get install -y pkg-config
-pecl install mongodb
+pecl install mongo
+```
 
-echo "extension=mongodb.so" | tee /etc/php/7.0/apache2/conf.d/20-mongodb.ini
+
+В процессе установки введите ответ “no” на запрос установщика.
+
+```
+echo "extension=mongo.so" | tee /etc/php/5.6/apache2/conf.d/20-mongo.ini
 ```
 
 
@@ -127,7 +131,7 @@ echo "extension=mongodb.so" | tee /etc/php/7.0/apache2/conf.d/20-mongodb.ini
 git clone --depth=1 "git://github.com/phalcon/cphalcon.git"
 cd cphalcon/build
 ./install
-echo "extension=phalcon.so" | tee /etc/php/7.0/apache2/conf.d/20-phalcon.ini
+echo "extension=phalcon.so" | tee /etc/php/5.6/apache2/conf.d/20-phalcon.ini
 service apache2 restart
 ```
 
@@ -140,8 +144,7 @@ service apache2 restart
 cd /var/www
 git init
 git remote add origin http://passwork.download/passwork/passwork.git
-git fetch
-git checkout php7
+git pull origin master
 ```
 
 
@@ -199,14 +202,15 @@ a2enmod rewrite
 service apache2 restart
 ```
 
+
 **Установка лицензии.**
 
-Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.json` (или `reginfo.php`) в директорию "/var/www/app/keys/".
+Распакуйте архив с ключами для регистрации и переместите файлы "demo.openssl.lic" и "reginfo.php" в директорию "/var/www/app/keys/".
+
 
 **Установка завершена.**
 
-Откройте [http://passwork.local](http://passwork.local) или [http://127.0.0.1](http://127.0.0.1) для доступа к вебсайту.
-
+Откройте [http://passwork.local](http://passwork.local) для доступа к вебсайту.
 
 
 **Используйте учетную запись по умолчанию для входа в систему:**

@@ -46,12 +46,12 @@ nano /etc/yum.repos.d/mongodb-org-3.4.repo
 Приведите файл к следующему виду:
 
 ```
-[mongodb-org-3.6]
+[mongodb-org-3.4]
 name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.6/x86_64/
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
 gpgcheck=1
 enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
+gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
 ```
 
 
@@ -62,7 +62,7 @@ yum -y install mongodb-org
 ```
 
 
-Измените режим работы SELinux на disabled. Откройте файл /etc/selinux/config и измените значение параметра `SELINUX` на disabled.
+Измените режим работы SELinux на permissive. Откройте файл /etc/selinux/config и измените значение параметра `SELINUX` на permissive.
 
 ```
 nano /etc/selinux/config
@@ -72,7 +72,7 @@ nano /etc/selinux/config
 Приведите файл к следующему виду:
 
 ```
-SELINUX=disabled
+SELINUX=permissive
 ```
 
 
@@ -94,7 +94,7 @@ systemctl enable mongod.service
 ```
 
 
-**4. Установка PHP 7**
+**4. Установка PHP5.6.**
 
 **Установка пакета конфигурации Remi репозитория.**
 
@@ -103,7 +103,7 @@ yum -y install wget yum-utils
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 rpm -Uvh remi-release-7*.rpm epel-release-latest-7*.rpm
-yum-config-manager --enable remi-php70
+yum-config-manager --enable remi-php56
 ```
 
 
@@ -118,7 +118,13 @@ yum -y install php php-json php-mcrypt php-ldap php-xml php-bcmath php-mbstring
 
 ```
 yum -y install gcc php-pear php-devel openssl-devel
-pecl install mongodb
+pecl install mongo
+```
+
+
+В процессе установки введите ответ “no” на запрос установщика.
+
+```
 echo "extension=mongo.so" | tee /etc/php.d/20-mongo.ini
 systemctl restart httpd
 ```
@@ -144,8 +150,7 @@ systemctl restart httpd
 cd /var/www
 git init
 git remote add origin http://passwork.download/passwork/passwork.git
-git fetch
-git checkout php7
+git pull origin master
 ```
 
 
@@ -205,12 +210,12 @@ systemctl restart httpd
 
 **Установка лицензии.**
 
-Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.json` (или `reginfo.php`) в директорию "/var/www/app/keys/".
+Распакуйте архив с ключами для регистрации и переместите файлы "demo.openssl.lic" и "reginfo.php" в директорию "/var/www/app/keys/".
 
 
 **Установка завершена.**
 
-Откройте [http://passwork.local](http://passwork.local) или [http://127.0.0.1](http://127.0.0.1) для доступа к вебсайту.
+Откройте [http://passwork.local](http://passwork.local) для доступа к вебсайту.
 
 
 **Используйте учетную запись по умолчанию для входа в систему:**

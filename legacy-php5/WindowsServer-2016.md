@@ -29,19 +29,15 @@
 
 Примечание: измените параметры безопасности IE перед загрузкой. Разрешите "Active Scripting" и "Download" функции в настройках браузера.
 
-![alt text](./images/WS2016_06-php7.png)
+![alt text](./images/WS2016_06.png)
 
 Нажмите “Next”, согласитесь с условиями использования, опять нажмите “Next”. Выберите опцию “Complete”.
 
-![alt text](./images/WS2016_07-php7.png)
-
-Отключите “Install MongoD as a Service”.  Нажмите “Next”.
-
-![alt text](./images/WS2016_08_01-php7.png)
+![alt text](./images/WS2016_07.png)
 
 Отмените установку “Install MongoDB Compass”. Нажмите “Next”, затем “Install” для начала процесса установки.
 
-![alt text](./images/WS2016_08_02-php7.png)
+![alt text](./images/WS2016_08.png)
 
 Нажмите “Finish” после завершения процесса установки.
 
@@ -54,9 +50,9 @@
 
 ![alt text](./images/WS2016_09.png)
 
-Нажмите на “Allow an app or feature trough Windows Firewall”, появится новое окно. Нажмите “Allow another app.” -> нажмите “Browse” и найдите приложение MongoDB Database Server "C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe", затем нажмите "Add" и "Ok".
+Нажмите на “Allow an app or feature trough Windows Firewall”, появится новое окно. Нажмите “Allow another app.” -> нажмите “Browse” и найдите приложение MongoDB Database Server "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe", затем нажмите "Add" и "Ok".
 
-![alt text](./images/WS2016_10-php7.png)
+![alt text](./images/WS2016_10.png)
 
 
 **Настройка службы Windows для MongoDB Community Edition.**
@@ -81,7 +77,7 @@ md \data\log
 
 **Создание файла конфигурации.**
 
-Создайте файл “C:\Program Files\MongoDB\Server\4.0\mongod.cfg” в котором описаны переменные systemLog.path и storage.dbPath:
+Создайте файл “C:\Program Files\MongoDB\Server\3.6\mongod.cfg” в котором описаны переменные systemLog.path и storage.dbPath:
 
 ```
 systemLog:
@@ -99,10 +95,9 @@ storage:
 Выполните:
 
 ```
-"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --config "C:\Program Files\MongoDB\Server\4.0\mongod.cfg" --install
+"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe" --config "C:\Program Files\MongoDB\Server\3.6\mongod.cfg" --install
 ```
 
-Уточнение: измените путь, если вы установили версию MongoDB отличную от `4.0`.
 
 **Запуск службы MongoDB.**
 
@@ -111,7 +106,7 @@ net start MongoDB
 ```
 
 
-![alt text](./images/WS2016_11-php7.png)
+![alt text](./images/WS2016_11.png)
 
 
 **Убедитесь в том, что служба MongoDB была успешно запущена.**
@@ -136,39 +131,34 @@ net start MongoDB
 
 ![alt text](./images/WS2016_14.png)
 
-Перейдите на вкладку “Products” и используя поиск найдите доступные версии PHP. Выберите PHP 7.0.30 из списка и нажмите “Add”. Затем выберите “Install” и согласитесь с условиями использования.
+Перейдите на вкладку “Products” и используя поиск найдите доступные версии PHP. Выберите PHP 5.6.31 из списка и нажмите “Add”. Затем выберите “Install” и согласитесь с условиями использования.
 
-![alt text](./images/WS2016_15-php7.png)
+![alt text](./images/WS2016_15.png)
 
 Если вы увидите сообщение "PHP Manager for IIS failed to install", то просто проигнорируйте его. Нажмите “Finish”.
 
 
 **4. Установка Legacy MongoDB PHP драйвера, Phalcon PHP фреймворка, а также дополнительных расширений и опций.**
 
+Перейдите по ссылке [https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip](https://windows.php.net/downloads/pecl/releases/mongo/1.5.1/php_mongo-1.5.1-5.6-nts-vc11-x86.zip) для скачивания Legacy MongoDB PHP драйвера.
 
-Перейдите по ссылке [https://windows.php.net/downloads/pecl/releases/mongodb/1.5.3/php_mongodb-1.5.3-7.0-nts-vc14-x86.zip](https://windows.php.net/downloads/pecl/releases/mongodb/1.5.3/php_mongodb-1.5.3-7.0-nts-vc14-x86.zip) для скачивания MongoDB PHP драйвера.
+Перейдите по ссылке [https://github.com/phalcon/cphalcon/releases/download/v3.3.2/phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip](https://github.com/phalcon/cphalcon/releases/download/v3.3.2/phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip) для скачивания Phalcon PHP фреймворка.
 
-Перейдите по ссылке [https://github.com/phalcon/cphalcon/releases/download/v3.4.1/phalcon_x86_vc14_php7.0_3.4.1-1751_nts.zip](https://github.com/phalcon/cphalcon/releases/download/v3.4.1/phalcon_x86_vc14_php7.0_3.4.1-1751_nts.zip)для скачивания Phalcon PHP фреймворка.
+Распакуйте the “php_mongo-1.5.1-5.6-nts-vc11-x86.zip” архив и скопируйте “php_mongo.dll” в “C:\Program Files (x86)\PHP\v5.6\ext”.
 
-Распакуйте the “php_mongodb-1.5.3-7.0-nts-vc14-x86.zip” архив и скопируйте “php_mongodb.dll” в “C:\Program Files (x86)\PHP\v7.0\ext”.
+Распакуйте the “phalcon_x86_vc11_php5.6.0_3.3.2_nts.zip” архив и скопируйте “php_phalcon.dll” в “C:\Program Files (x86)\PHP\v5.6\ext”.
 
-Распакуйте the “phalcon_x86_vc14_php7.0_3.4.1-1751_nts.zip” архив и скопируйте “php_phalcon.dll” в “C:\Program Files (x86)\PHP\v7.0\ext”.
-
-Откройте “C:\Program Files (x86)\PHP\v7.0\php.ini” при помощи блокнота и добавьте в раздел [Extension List] следующие строки:
+Откройте “C:\Program Files (x86)\PHP\v5.6\php.ini” при помощи блокнота и добавьте в раздел [Extension List] следующие строки:
 
 ```
-extension=php_mongodb.dll
+extension=php_mongo.dll
 extension=php_phalcon.dll
 extension=php_ldap.dll
 ```
 
+
 Сохраните изменения и закройте блокнот.
 
-Скачайте и установите[Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784). Выберите "vcredist_x86.exe" версию.
-
-Перезапустите “IIS”, чтобы PHP расширения подгрузились.
-
-![alt text](./images/WS2016_15_01-php7.png)
 
 **5. Загрузка и установка Passwork.**
 
@@ -219,7 +209,7 @@ extension=php_ldap.dll
 Выполните следующие команды:
 
 ```
-cd C:\Program Files\MongoDB\Server\4.0\bin
+cd C:\Program Files\MongoDB\Server\3.6\bin
 ```
 ```
 mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
@@ -244,14 +234,13 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 
 **Установка лицензии.**
 
-Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.json` (или `reginfo.php`) в директорию `C:\inetpub\wwwroot\app\keys\`.
+Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.php` в директорию `C:\inetpub\wwwroot\app\keys\`.
 
 
 **Установка завершена.**
 
 Откройте [http://passwork.local](http://passwork.local) для доступа к вебсайту.
 
-![alt text](./images/WS2016_25-php7.png)
 
 **Используйте учетную запись по умолчанию для входа в систему:**
 
