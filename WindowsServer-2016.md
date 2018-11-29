@@ -180,9 +180,13 @@ extension=php_ldap.dll
 
 ![alt text](./images/WS2016_17.png)
 
+Переключитесь в ветку PHP7
+
+![alt text](./images/WS2016_18_01-php7.png)
+
 Нажмите на иконку загрузки и выберите ZIP опцию.
 
-![alt text](./images/WS2016_18.png)
+![alt text](./images/WS2016_18_03-php7.png)
 
 Извлеките архив и скопируйте содержимое папки "paswork" в директорию “C:\inetpub\wwwroot\”.
 
