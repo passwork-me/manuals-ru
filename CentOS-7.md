@@ -119,7 +119,7 @@ yum -y install php php-json php-mcrypt php-ldap php-xml php-bcmath php-mbstring
 ```
 yum -y install gcc php-pear php-devel openssl-devel
 pecl install mongodb
-echo "extension=mongo.so" | tee /etc/php.d/20-mongo.ini
+echo "extension=mongodb.so" | tee /etc/php.d/20-mongo.ini
 systemctl restart httpd
 ```
 
