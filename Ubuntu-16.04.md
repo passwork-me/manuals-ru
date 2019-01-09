@@ -124,7 +124,7 @@ echo "extension=mongodb.so" | tee /etc/php/7.0/apache2/conf.d/20-mongodb.ini
 **6. Установка Phalcon PHP фреймворка.**
 
 ```
-git clone --depth=1 "git://github.com/phalcon/cphalcon.git"
+git clone --branch 3.4.x  --depth=1 "git://github.com/phalcon/cphalcon.git"
 cd cphalcon/build
 ./install
 echo "extension=phalcon.so" | tee /etc/php/7.0/apache2/conf.d/20-phalcon.ini

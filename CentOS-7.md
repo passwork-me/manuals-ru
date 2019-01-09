@@ -128,7 +128,7 @@ systemctl restart httpd
 
 ```
 yum -y install php-mysql libtool pcre-devel
-git clone --depth=1 "git://github.com/phalcon/cphalcon.git"
+git clone --branch 3.4.x  --depth=1 "git://github.com/phalcon/cphalcon.git"
 cd cphalcon/build
 ./install
 echo "extension=phalcon.so" | tee /etc/php.d/50-phalcon.ini
@@ -187,7 +187,8 @@ nano /etc/httpd/conf.d/non-ssl.conf
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
-        allow from all
+        Allow from all
+		Require all granted
     </Directory>
     ErrorLog logs/error_log
     TransferLog logs/access_log
@@ -319,7 +320,8 @@ ServerName passwork.local:443
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
-        allow from all
+        Allow from all
+		Require all granted
     </Directory>
 ```
 
@@ -350,7 +352,8 @@ SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
-        allow from all
+        Allow from all
+		Require all granted
     </Directory>
     SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
     SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
