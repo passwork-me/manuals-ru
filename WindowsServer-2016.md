@@ -182,11 +182,11 @@ extension=php_ldap.dll
 
 Переключитесь в ветку PHP7
 
-![alt text](./images/WS2016_18_01-php7.png)
+![alt text](./images/WS2016_18_01-v3.png)
 
 Нажмите на иконку загрузки и выберите ZIP опцию.
 
-![alt text](./images/WS2016_18_03-php7.png)
+![alt text](./images/WS2016_18_03-v3.png)
 
 Извлеките архив и скопируйте содержимое папки "paswork" в директорию “C:\inetpub\wwwroot\”.
 
@@ -246,25 +246,22 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 Нажмите “Apply” после успешного импорта.
 
 
-**Установка лицензии.**
-
-Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.json` (или `reginfo.php`) в директорию `C:\inetpub\wwwroot\app\keys\`.
-
-
 **Установка завершена.**
 
 Откройте [http://passwork.local](http://passwork.local) для доступа к вебсайту.
 
 ![alt text](./images/WS2016_25-php7.png)
 
-**Используйте учетную запись по умолчанию для входа в систему:**
+**Зарегистрируйтесь**
 
-логин: `admin@passwork.me`
+Введите логин и пароль для первого пользователя. Загрузите лицензионные ключ (`.lic` и `reginfo.json`).
+Пользователь автоматически станет администратором и владельцем организации.
 
-пароль: `DemoDemo`
+**Установка лицензии в ручном режиме**
 
+Если вместо файла `reginfo.json` у вас `reginfo.php`, то загрузите эти файлы в директорию `c:\inetpub\wwwroot\app\keys\`.
 
-**6. Configure SSL certificate on IIS 10.**
+**6. Настройка SSL сертификата в IIS 10.**
 
 Откройте “Server Manager”, выберите “Tools” затем “Internet Information Services (IIS) Manager”, выберите сервер и два раза кликните на “Server Certificates”, импортируйте сертификат.
 

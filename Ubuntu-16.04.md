@@ -141,7 +141,7 @@ cd /var/www
 git init
 git remote add origin http://passwork.download/passwork/passwork.git
 git fetch
-git checkout php7
+git checkout v3
 ```
 
 
@@ -199,22 +199,19 @@ a2enmod rewrite
 service apache2 restart
 ```
 
-**Установка лицензии.**
-
-Распакуйте архив с ключами для регистрации и переместите файлы `.lic` и `reginfo.json` (или `reginfo.php`) в директорию "/var/www/app/keys/".
-
 **Установка завершена.**
 
 Откройте [http://passwork.local](http://passwork.local) или [http://127.0.0.1](http://127.0.0.1) для доступа к вебсайту.
 
 
+**Зарегистрируйтесь**
 
-**Используйте учетную запись по умолчанию для входа в систему:**
+Введите логин и пароль для первого пользователя. Загрузите лицензионные ключ (`.lic` и `reginfo.json`).
+Пользователь автоматически станет администратором и владельцем организации.
 
-логин: `admin@passwork.me`
+**Установка лицензии в ручном режиме**
 
-пароль: `DemoDemo`
-
+Если вместо файла `reginfo.json` у вас `reginfo.php`, то загрузите эти файлы в директорию `/var/www/app/keys/`.
 
 **8. Создание SSL сертификата.**
 
