@@ -25,9 +25,9 @@
 
 **2. Установка MongoDB.**
 
-Откройте ссылку [https://www.mongodb.com/download-center](https://www.mongodb.com/download-center) выберите “Community Server”, “Windows”, нажмите “Download”, затем “Save”. Начнется процесс скачивания пакета MongoDB. Нажмите “Run” чтобы начать процесс установки.
+Откройте ссылку [https://www.mongodb.com/download-center/community](https://www.mongodb.com/download-center/community) выберите “Server”, в поле “Version” выберите версию с пометкой (current release), в поле “OS” выберите “Windows”, в поле “Package” выберите "MSI", затем нажмите “Download”. Начнется процесс скачивания пакета MongoDB. Запустите скачанный файл, чтобы начать процесс установки.
 
-Примечание: измените параметры безопасности IE перед загрузкой. Разрешите "Active Scripting" и "Download" функции в настройках браузера.
+Или вы можете воспользоваться ссылкой [https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.0-signed.msi](https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.0-signed.msi) для скачивания актуальной версии (на момент написания инструкции) напрямую.
 
 ![alt text](./images/WS2016_06-php7.png)
 
@@ -35,7 +35,7 @@
 
 ![alt text](./images/WS2016_07-php7.png)
 
-Отключите “Install MongoD as a Service”.  Нажмите “Next”.
+Отметьте пункт “Install MongoD as a Service”.  Нажмите “Next”.
 
 ![alt text](./images/WS2016_08_01-php7.png)
 
@@ -54,69 +54,14 @@
 
 ![alt text](./images/WS2016_09.png)
 
-Нажмите на “Allow an app or feature trough Windows Firewall”, появится новое окно. Нажмите “Allow another app.” -> нажмите “Browse” и найдите приложение MongoDB Database Server "C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe", затем нажмите "Add" и "Ok".
+Нажмите на “Allow an app or feature trough Windows Firewall”, появится новое окно. Нажмите “Allow another app.” -> нажмите “Browse” и найдите приложение MongoDB Database Server "C:\Program Files\MongoDB\Server\4.2\bin\mongod.exe", затем нажмите "Add" и "Ok".
 
 ![alt text](./images/WS2016_10-php7.png)
 
 
-**Настройка службы Windows для MongoDB Community Edition.**
-
-Создайте директорию для базы данных и лог файлов:
-Откройте коммандную строку. Нажмите “Win+X”, затем “a”. Выполните:
-
-```
-md \data\db
-```
-
-
-и
-
-```
-md \data\log
-```
-
-
-команды.
-
-
-**Создание файла конфигурации.**
-
-Создайте файл “C:\Program Files\MongoDB\Server\4.0\mongod.cfg” в котором описаны переменные systemLog.path и storage.dbPath:
-
-```
-systemLog:
-    destination: file
-    path: c:\data\log\mongod.log
-storage:
-    dbPath: c:\data\db
-```
-
-
-**Установка службы MongoDB.**
-
-Выполните все команды ниже из командной строки с привилегиями администратора (откройте командную строку. Нажмите “Win+X”, затем “a”).
-
-Выполните:
-
-```
-"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --config "C:\Program Files\MongoDB\Server\4.0\mongod.cfg" --install
-```
-
-Уточнение: измените путь, если вы установили версию MongoDB отличную от `4.0`.
-
-**Запуск службы MongoDB.**
-
-```
-net start MongoDB
-```
-
-
-![alt text](./images/WS2016_11-php7.png)
-
-
 **Убедитесь в том, что служба MongoDB была успешно запущена.**
 
-Проверьте лог файл c:\data\log\mongod.log и обратите внимание на строку: [initandlisten] waiting for connections on port 27017
+Проверьте лог файл C:\Program Files\MongoDB\Server\4.2\log\mongod.log и обратите внимание на строку: [initandlisten] waiting for connections on port 27017
 
 
 **3. Установка PHP.**
@@ -136,7 +81,7 @@ net start MongoDB
 
 ![alt text](./images/WS2016_14.png)
 
-Перейдите на вкладку “Products” и используя поиск найдите доступные версии PHP. Выберите PHP 7.0.30 из списка и нажмите “Add”. Затем выберите “Install” и согласитесь с условиями использования.
+Перейдите на вкладку “Products” и используя поиск найдите доступные версии PHP. Выберите PHP 7.2.19 из списка и нажмите “Add”. Затем выберите “Install” и согласитесь с условиями использования.
 
 ![alt text](./images/WS2016_15-php7.png)
 
@@ -146,15 +91,15 @@ net start MongoDB
 **4. Установка Legacy MongoDB PHP драйвера, Phalcon PHP фреймворка, а также дополнительных расширений и опций.**
 
 
-Перейдите по ссылке [https://windows.php.net/downloads/pecl/releases/mongodb/1.5.3/php_mongodb-1.5.3-7.0-nts-vc14-x86.zip](https://windows.php.net/downloads/pecl/releases/mongodb/1.5.3/php_mongodb-1.5.3-7.0-nts-vc14-x86.zip) для скачивания MongoDB PHP драйвера.
+Перейдите по ссылке [https://windows.php.net/downloads/pecl/releases/mongodb/1.5.5/php_mongodb-1.5.5-7.2-nts-vc15-x86.zip](https://windows.php.net/downloads/pecl/releases/mongodb/1.5.5/php_mongodb-1.5.5-7.2-nts-vc15-x86.zip) для скачивания MongoDB PHP драйвера.
 
-Перейдите по ссылке [https://github.com/phalcon/cphalcon/releases/download/v3.4.1/phalcon_x86_vc14_php7.0_3.4.1-1751_nts.zip](https://github.com/phalcon/cphalcon/releases/download/v3.4.1/phalcon_x86_vc14_php7.0_3.4.1-1751_nts.zip)для скачивания Phalcon PHP фреймворка.
+Перейдите по ссылке [https://github.com/phalcon/cphalcon/releases/download/v3.4.4/phalcon_x86_vc15_php7.2_3.4.4_nts.zip](https://github.com/phalcon/cphalcon/releases/download/v3.4.4/phalcon_x86_vc15_php7.2_3.4.4_nts.zip) для скачивания Phalcon PHP фреймворка.
 
-Распакуйте the “php_mongodb-1.5.3-7.0-nts-vc14-x86.zip” архив и скопируйте “php_mongodb.dll” в “C:\Program Files (x86)\PHP\v7.0\ext”.
+Распакуйте the “php_mongodb-1.5.5-7.2-nts-vc15-x86.zip” архив и скопируйте “php_mongodb.dll” в “C:\Program Files (x86)\PHP\v7.2\ext”.
 
-Распакуйте the “phalcon_x86_vc14_php7.0_3.4.1-1751_nts.zip” архив и скопируйте “php_phalcon.dll” в “C:\Program Files (x86)\PHP\v7.0\ext”.
+Распакуйте the “phalcon_x86_vc15_php7.2_3.4.4_nts.zip” архив и скопируйте “php_phalcon.dll” в “C:\Program Files (x86)\PHP\v7.2\ext”.
 
-Откройте “C:\Program Files (x86)\PHP\v7.0\php.ini” при помощи блокнота и добавьте в раздел [Extension List] следующие строки:
+Откройте “C:\Program Files (x86)\PHP\v7.2\php.ini” при помощи блокнота и добавьте в раздел [ExtensionList] следующие строки:
 
 ```
 extension=php_mongodb.dll
@@ -164,7 +109,7 @@ extension=php_ldap.dll
 
 Сохраните изменения и закройте блокнот.
 
-Скачайте и установите[Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784). Выберите "vcredist_x86.exe" версию.
+Скачайте и установите [Visual C++ Redistributable Packages for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145). Выберите "vcredist_x86.exe" версию.
 
 Перезапустите “IIS”, чтобы PHP расширения подгрузились.
 
@@ -180,7 +125,7 @@ extension=php_ldap.dll
 
 ![alt text](./images/WS2016_17.png)
 
-Переключитесь в ветку PHP7
+Переключитесь в ветку v3
 
 ![alt text](./images/WS2016_18_01-v3.png)
 
@@ -239,7 +184,7 @@ mongorestore --db pwbox C:\inetpub\wwwroot\dump\pwbox
 
 ![alt text](./images/WS2016_23.png)
 
-Закройте IIS Manager и снова откройте его, выберите вебсайт. Кликните два раза на иконку “URL Rewrite”. Нажимите “Import rules” и выберите .htaccess файл из корневой директории сайта, нажмите “Open” затем “Import”.
+Закройте IIS Manager и снова откройте его, выберите вебсайт. Кликните два раза на иконку “URL Rewrite”. Нажмите “Import rules” и выберите .htaccess файл из корневой директории сайта, нажмите “Open” затем “Import”.
 
 ![alt text](./images/WS2016_24.png)
 
